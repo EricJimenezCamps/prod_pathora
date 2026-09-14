@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Pauta",
+  title: "Pathora",
   description: "Entiende la prueba. Prepárala bien.",
 };
 

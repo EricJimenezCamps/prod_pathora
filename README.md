@@ -1,4 +1,4 @@
-# Pauta (Pathora)
+# Pathora
 
 Producto EdTech self-service: el estudiante sube una PAC/PEC, recibe un
 análisis gratuito de requisitos y temas, y puede comprar una guía de
@@ -14,6 +14,9 @@ completo en `scratch/` (`pathora_concepto_producto.docx`,
 ## Desarrollo local
 
 ### Base de datos
+
+Solo para desarrollo local — en producción se usará Vercel Postgres, así
+que `docker-compose.yml` deja de ser necesario una vez desplegado.
 
 ```
 docker compose up -d

@@ -2,7 +2,7 @@ export default function Home() {
   return (
     <main className="flex flex-1 flex-col items-center justify-center gap-4 bg-offwhite px-6 text-center">
       <span className="text-sm font-semibold uppercase tracking-wide text-teal">
-        Pauta
+        Pathora
       </span>
       <h1 className="text-3xl font-bold text-navy sm:text-4xl">
         Entiende la prueba. Prepárala bien.

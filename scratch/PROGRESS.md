@@ -1,4 +1,4 @@
-# Progreso y decisiones — Pauta (Pathora)
+# Progreso y decisiones — Pathora
 
 Log cronológico por sesión. Añadir entradas nuevas al final; no crear
 documentos sueltos para esto.
@@ -30,8 +30,29 @@ de asignatura.
 
 **Pendiente / próxima sesión**:
 - Elegir host definitivo para `apps/api`.
-- Naming definitivo de "Pauta" (o buscar disponibilidad de marca/dominio).
 - Elegir 3–5 asignaturas UOC para pruebas de calidad inicial.
 - Definir el schema JSON/Pydantic exacto del PAC Analyzer.
 - Diseñar el flujo de upload → analyzer en `apps/web` y el primer endpoint
   real en `apps/api`.
+
+## 2026-09-14 (cont.) — Naming definitivo
+
+**Decisión**: el nombre del producto es **Pathora** (no "Pauta" como
+working name). Renombrado en todo el esqueleto: título/branding de
+`apps/web`, título de la API en `apps/api`, usuario/DB de Postgres en
+`docker-compose.yml` y `.env.example`.
+
+**Nota pendiente de verificar**: los dos documentos de producto en
+`scratch/` (`pathora_concepto_producto.docx`,
+`pathora_estrategia_distribucion.docx`) usan internamente el nombre "Pauta"
+en el contenido y en el naming alternativo (sección 8.2 del documento de
+concepto) — no se han editado, siguen como material de referencia
+histórico de la sesión de brainstorming.
+
+**Próxima sesión — orden acordado**:
+1. Levantar Docker paso a paso (guía sencilla, ya que Docker Desktop no
+   estaba corriendo al final de esta sesión). Docker es solo para
+   desarrollo local: en producción se usará Vercel Postgres y
+   `docker-compose.yml` deja de ser necesario.
+2. Asignaturas piloto de UOC.
+3. Schema del PAC Analyzer.
