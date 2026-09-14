@@ -1,0 +1,16 @@
+# Python (apps/api)
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+
+# Node (fallback; apps/web has its own .gitignore too)
+node_modules/
+
+# Env files
+.env
+.env.local
+
+# OS / editor
+.DS_Store
+Thumbs.db
