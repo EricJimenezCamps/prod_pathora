@@ -46,3 +46,22 @@ class PAC(BaseModel):
     checklist: list[str]
     risks: list[str]
     source_text_hash: str
+
+
+class PACExtraction(BaseModel):
+    """What the LLM extracts from a PAC/PEC PDF.
+
+    Excludes fields the model must not invent: `id` (generated server-side)
+    and `source_text_hash` (the real SHA-256 of the uploaded bytes).
+    """
+
+    subject: str
+    university: str | None = None
+    title: str
+    deadline: date | None = None
+    exercises: list[Exercise]
+    deliverables: list[Deliverable]
+    rubric: list[RubricItem] = []
+    general_requirements: list[str]
+    checklist: list[str]
+    risks: list[str]

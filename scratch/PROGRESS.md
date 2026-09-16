@@ -183,3 +183,59 @@ currently still Next.js default Geist) — cheap follow-up, not done today.
 
 **Next up**: back to backend — wire a first `/analyze` endpoint (or start
 the LLM extraction prompt), as queued above.
+
+## 2026-09-16 (cont.) — Real `/analyze` endpoint with Claude extraction
+
+Built the `/analyze` endpoint in two passes. First pass: accepts a PDF
+upload, validates content type, hashes the real bytes (`sha256`) for
+`source_text_hash`, and returned the hardcoded fixture — enough to prove
+the HTTP layer (upload, validation, `response_model=PAC`) end-to-end
+before tackling real extraction.
+
+Second pass: wired real extraction via the Claude API. **Decision — LLM
+provider is Anthropic** (`.env.example`'s `LLM_API_KEY` renamed to
+`ANTHROPIC_API_KEY`). Added `app/services/analyzer.py`:
+`client.messages.parse(output_format=PACExtraction)` with the PDF sent
+natively as a base64 `document` content block (no separate PDF-text
+library — Claude reads layout/tables directly). Model: `claude-opus-5`.
+
+**Key design choice**: split the schema into `PAC` (full record) and a
+new `PACExtraction` (everything except `id` and `source_text_hash`) in
+`apps/api/app/schemas/pac.py`. The LLM must never generate `id` or
+`source_text_hash` — those are assembled server-side in `main.py` from
+`uuid4()` and the real `sha256` of the uploaded bytes, so the hash stays
+trustworthy for future de-dup even though the analysis content comes from
+the model.
+
+**Bug found and fixed along the way**: `config.py`'s `env_file=".env"` was
+a relative path, resolved against whatever directory `uvicorn` is
+launched from. Since the README says to run `uvicorn` from `apps/api` but
+put `.env` at the repo root, the root `.env` was never actually being
+read in the documented workflow (this predates today — would have
+affected `database_url` too). Fixed by resolving the path from
+`config.py`'s own location instead of cwd.
+
+**Verified with a real PDF**, not just a synthetic one: user supplied a
+real UOC "Dret Constitucional" PAC (Catalan legal assignment, non-ADE,
+outside the 5 pilot subjects) as a stress test. Extraction correctly
+separated the Moodle test from the two theory/practice exercises, kept
+the 30/70 rubric weighting plus five non-numeric grading criteria
+(`weight: null`), and `checklist`/`risks` surfaced real gotchas from the
+text (e.g. this PAC explicitly forbids PDF submission, penalizes wrong
+test answers by 1/3 point, and treats uncited sources as plagiarism → D
+grade) rather than generic advice. Confirms the schema and prompt
+generalize beyond the 5 pilot subjects and beyond Spanish (Catalan
+source).
+
+**Also fixed**: a missing `ANTHROPIC_API_KEY` used to raise a raw SDK
+`TypeError` as an unhandled 500. `main.py` now checks
+`settings.anthropic_api_key` upfront and returns a clean
+"LLM provider misconfigured" 500 instead.
+
+**Deferred on purpose**: the frontend (`UploadDropzone.tsx`'s `handleAnalyze`
+is still inert — no `fetch` call to `/analyze` yet), persisting analyses to
+Postgres, and de-duping repeat uploads via `source_text_hash` (the field
+is populated correctly now, but nothing reads it yet).
+
+**Next up**: wire `UploadDropzone.tsx` to actually call `/analyze` and
+render a real result, so there's an end-to-end demo in the browser.
