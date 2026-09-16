@@ -1,0 +1,89 @@
+{
+  "id": "8f14e45f-ceea-4c5d-b5e9-92e4123c8b3a",
+  "subject": "Contabilidad de costes",
+  "university": "UOC",
+  "title": "PAC 2 — Sistemas de costes por órdenes de trabajo",
+  "deadline": "2026-11-05",
+  "exercises": [
+    {
+      "id": "ex-1",
+      "prompt": "Calcula el coste unitario de producción de las órdenes A y B a partir de los datos de materia prima, mano de obra directa y costes indirectos de fabricación aportados en el enunciado.",
+      "topics": ["costes directos e indirectos", "órdenes de trabajo", "coste unitario"],
+      "difficulty": "medium",
+      "requirements": [
+        "Mostrar el desglose por orden de trabajo",
+        "Justificar el criterio de reparto de costes indirectos"
+      ],
+      "deliverable_format": "Tabla de cálculo + explicación breve"
+    },
+    {
+      "id": "ex-2",
+      "prompt": "Determina la tasa de aplicación de costes indirectos utilizando horas de mano de obra directa como base de reparto.",
+      "topics": ["tasa de aplicación", "bases de reparto"],
+      "difficulty": "medium",
+      "requirements": [
+        "Indicar la fórmula utilizada",
+        "Redondear a dos decimales"
+      ],
+      "deliverable_format": null
+    },
+    {
+      "id": "ex-3",
+      "prompt": "Analiza las desviaciones entre el coste estándar y el coste real de la orden B, y propón dos posibles causas para cada desviación detectada.",
+      "topics": ["desviaciones", "coste estándar vs. coste real"],
+      "difficulty": "high",
+      "requirements": [
+        "Cuantificar cada desviación en euros",
+        "Argumentar las causas con base en los datos del enunciado, no de forma genérica"
+      ],
+      "deliverable_format": "Informe breve (máx. 1 página)"
+    }
+  ],
+  "deliverables": [
+    {
+      "id": "del-1",
+      "description": "Documento con los cálculos de los ejercicios 1 y 2",
+      "format": "Excel o PDF con fórmulas visibles"
+    },
+    {
+      "id": "del-2",
+      "description": "Informe de análisis de desviaciones (ejercicio 3)",
+      "format": "PDF, máximo 1 página"
+    }
+  ],
+  "rubric": [
+    {
+      "id": "rub-1",
+      "description": "Corrección de los cálculos de coste unitario",
+      "weight": 40.0,
+      "exercise_ids": ["ex-1", "ex-2"]
+    },
+    {
+      "id": "rub-2",
+      "description": "Calidad del análisis de desviaciones",
+      "weight": 40.0,
+      "exercise_ids": ["ex-3"]
+    },
+    {
+      "id": "rub-3",
+      "description": "Presentación y claridad del documento entregado",
+      "weight": 20.0,
+      "exercise_ids": []
+    }
+  ],
+  "general_requirements": [
+    "Entrega en formato PDF a través del aula virtual",
+    "Incluir nombre y DNI en la portada",
+    "No se admiten entregas fuera de plazo salvo justificación previa"
+  ],
+  "checklist": [
+    "Revisar el módulo 3 sobre sistemas de costes por órdenes de trabajo",
+    "Tener a mano la tabla de costes indirectos del enunciado",
+    "Confirmar la base de reparto antes de empezar el ejercicio 2"
+  ],
+  "risks": [
+    "El ejercicio 3 exige justificar con datos concretos, no basta una explicación teórica",
+    "Fácil confundir coste estándar con coste presupuestado si no se relee la definición del módulo"
+  ],
+  "source_text_hash": "b7e23ec29af22b0b4e41da31e868d57ff3aef2b4b4f9a3c26e3d7a2e0e7a1c9"
+}
